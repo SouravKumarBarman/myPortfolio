@@ -253,7 +253,7 @@ export default function Portfolio() {
                       <span className="sr-only">GitHub</span>
                     </Button>
                   </Link>
-                  <Link href="https://www.linkedin.com/in/souravkumarbarman/" target="_blank" rel="noopener noreferrer">
+                  <Link href="https://www.linkedin.com/in/sourav1729" target="_blank" rel="noopener noreferrer">
                     <Button variant="ghost" size="icon">
                       <Linkedin className="h-4 w-4" />
                       <span className="sr-only">LinkedIn</span>
@@ -361,26 +361,26 @@ export default function Portfolio() {
               <ProjectCard
                 title="Chat with PDF"
                 description="A web application that allows users to upload PDF documents and ask questions about the content using natural language processing."
-                image="/placeholder.svg?height=300&width=500"
+                image="https://raw.githubusercontent.com/SouravKumarBarman/pdf-reader-chatbot/refs/heads/main/desktop.png"
                 tags={["React", "Tailwind", "FastAPI", "LangChain", "NLP"]}
-                demoLink="https://example.com"
-                codeLink="https://github.com"
+                
+                codeLink="https://github.com/SouravKumarBarman/pdf-reader-chatbot"
               />
               <ProjectCard
                 title="Full-Stack Blog Website"
                 description="A complete blog platform with rich text editing features, user authentication, and image upload capabilities."
-                image="/placeholder.svg?height=300&width=500"
+                image="https://res.cloudinary.com/dyxfmln9h/image/upload/v1741321014/Screenshot_2024-11-04_112609_rngmad.png"
                 tags={["React", "Appwrite", "Tailwind CSS", "Redux"]}
-                demoLink="https://example.com"
-                codeLink="https://github.com"
+                demoLink="https://blog-website-gules-sigma.vercel.app/"
+                codeLink="https://github.com/SouravKumarBarman/blog-website"
               />
               <ProjectCard
                 title="To-Do List Web Application"
                 description="A task management application with features for creating, deleting, and marking tasks as complete, with data persistence."
-                image="/placeholder.svg?height=300&width=500"
+                image="https://res.cloudinary.com/dyxfmln9h/image/upload/v1741321292/Screenshot_2025-03-07_095107_whvr5d.png"
                 tags={["React", "Redux", "Tailwind CSS", "localStorage"]}
-                demoLink="https://example.com"
-                codeLink="https://github.com"
+                demoLink="https://todo-app-tau-six-82.vercel.app/"
+                codeLink="https://github.com/SouravKumarBarman/todo-redux"
               />
             </div>
           </div>
@@ -483,7 +483,7 @@ export default function Portfolio() {
                 </div>
                 <div className="flex items-center gap-2">
                   <Github className="h-5 w-5 text-muted-foreground dark:text-gray-400" />
-                  <Link href="https://github.com/souravkumarbarman" className="hover:text-primary transition-colors">
+                  <Link href="https://github.com/souravkumarbarman" className="hover:text-primary transition-colors" target="_blank">
                     github.com/souravkumarbarman
                   </Link>
                 </div>
@@ -600,7 +600,7 @@ function ProjectCard({
   description: string
   image: string
   tags: string[]
-  demoLink: string
+  demoLink?: string
   codeLink: string
 }) {
   return (
@@ -628,12 +628,14 @@ function ProjectCard({
             ))}
           </div>
           <div className="flex gap-4">
+            {demoLink?
             <Link href={demoLink} target="_blank" rel="noopener noreferrer">
-              <Button variant="outline" size="sm">
-                <ExternalLink className="mr-2 h-4 w-4" />
-                Live Demo
-              </Button>
-            </Link>
+            <Button variant="outline" size="sm">
+              <ExternalLink className="mr-2 h-4 w-4" />
+              Live Demo
+            </Button>
+          </Link>:null}
+            
             <Link href={codeLink} target="_blank" rel="noopener noreferrer">
               <Button variant="outline" size="sm">
                 <Github className="mr-2 h-4 w-4" />
