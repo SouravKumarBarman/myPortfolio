@@ -1,6 +1,6 @@
 "use client"
 
-import { Mail, Github, Linkedin, ExternalLink, X, Moon, Sun } from "lucide-react"
+import { Mail, Github, Linkedin, ExternalLink, X, Moon, Sun, Twitter } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -9,6 +9,13 @@ import { Badge } from "@/components/ui/badge"
 import { motion, AnimatePresence } from "framer-motion"
 import { useState, useEffect } from "react"
 import { useTheme } from "next-themes"
+import { Caveat } from "next/font/google"
+
+const font = Caveat({
+  subsets: ["latin"],
+  weight: ["400"],
+  display: "swap",
+})
 
 export default function Portfolio() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -101,7 +108,7 @@ export default function Portfolio() {
       {/* Header */}
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 dark:bg-gray-800 dark:border-gray-700">
         <div className="container flex h-16 items-center justify-between">
-          <div className="font-bold text-xl ml-2">
+          <div className={font.className + " text-4xl ml-4"}>
             <Link href="/">Sourav</Link>
           </div>
           <nav className="hidden md:flex gap-6">
@@ -122,10 +129,6 @@ export default function Portfolio() {
             </Link>
           </nav>
           <div className="flex items-center gap-2">
-            <Button variant="outline" size="sm" className="hidden md:flex">
-              <Mail className="mr-2 h-4 w-4" />
-              Contact Me
-            </Button>
             <Button variant="ghost" size="icon" onClick={toggleTheme} className="md:mr-2">
               {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
             </Button>
@@ -166,7 +169,7 @@ export default function Portfolio() {
             transition={{ duration: 0.2 }}
             className="md:hidden fixed inset-x-0 top-16 bg-background z-40 border-b dark:bg-gray-800 dark:border-gray-700"
           >
-            <nav className="container py-4 flex flex-col gap-4">
+            <nav className="container py-4 flex flex-col gap-4 ml-2">
               <Link
                 href="#about"
                 className="text-sm font-medium hover:text-primary transition-colors"
@@ -195,17 +198,6 @@ export default function Portfolio() {
               >
                 Experience
               </Link>
-              <Link
-                href="#contact"
-                className="text-sm font-medium hover:text-primary transition-colors"
-                onClick={toggleMenu}
-              >
-                Contact
-              </Link>
-              <Button variant="outline" size="sm" className="w-full">
-                <Mail className="mr-2 h-4 w-4" />
-                Contact Me
-              </Button>
             </nav>
           </motion.div>
         )}
@@ -226,15 +218,34 @@ export default function Portfolio() {
                   <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
                     Hi, I'm Sourav Kumar Barman
                   </h1>
-                  <p className="text-xl text-muted-foreground dark:text-gray-300">
-                    Computer Science Engineering Student
+                  <p className="text-l text-muted-foreground dark:text-gray-300">
+                    I'm a passionate full-stack web developer, currently expanding into mobile development with React Native.
+                  </p>
+                  <p className="text-l text-muted-foreground dark:text-gray-300">
+                    I'm actively seeking internships or remote freelance opportunities. Feel free to reach out with questions, opportunities, or just to say hi — the best way to contact me is through:
                   </p>
                 </div>
+                <div className="flex gap-4">
+                  <Link href="https://www.linkedin.com/in/sourav1729" target="_blank" rel="noopener noreferrer">
+                    <Button variant="link">
+                      <h4>LinkedIn</h4>
+                      <Linkedin className="h-4 w-4" />
+                    </Button>
+                  </Link>
+                  <Link href="https://x.com/sourav_k_barman" target="_blank" rel="noopener noreferrer">
+                    <Button variant="link">
+                      <h4 >Twitter</h4>
+                      <Twitter className="h-4 w-4" />
+                    </Button>
+                  </Link>
+                  <Link href="mailto:souravjp9@gmail.com">
+                    <Button variant="link">
+                      <h4 >Email</h4>
+                      <Mail className="h-4 w-4" />
+                    </Button>
+                  </Link>
+                </div>
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                  <Button>
-                    <Mail className="mr-2 h-4 w-4" />
-                    Contact Me
-                  </Button>
                   <Link
                     href="https://res.cloudinary.com/dyxfmln9h/image/upload/v1740851596/SouravResume_3_j2vguw.pdf"
                     target="_blank"
@@ -243,20 +254,6 @@ export default function Portfolio() {
                   >
                     <Button variant="outline">
                       Download Resume
-                    </Button>
-                  </Link>
-                </div>
-                <div className="flex gap-4">
-                  <Link href="https://github.com/souravkumarbarman" target="_blank" rel="noopener noreferrer">
-                    <Button variant="ghost" size="icon">
-                      <Github className="h-4 w-4" />
-                      <span className="sr-only">GitHub</span>
-                    </Button>
-                  </Link>
-                  <Link href="https://www.linkedin.com/in/sourav1729" target="_blank" rel="noopener noreferrer">
-                    <Button variant="ghost" size="icon">
-                      <Linkedin className="h-4 w-4" />
-                      <span className="sr-only">LinkedIn</span>
                     </Button>
                   </Link>
                 </div>
@@ -359,11 +356,20 @@ export default function Portfolio() {
             </div>
             <div className="mx-auto grid max-w-5xl gap-6 py-12 lg:grid-cols-2 lg:gap-12">
               <ProjectCard
+                title="LibCheck"
+                description="A library management mobile app that allows users to search for books, manage their library, and track borrowed books.
+                  Admin features include adding, updating, and deleting books, as well as managing user accounts."
+                image="/LibCheck.png"
+                tags={["React Native", "Tailwind", "Express.js", "Supabase", "Postgres"]}
+                demoLink="https://github.com/SouravKumarBarman/LibCheck/releases/tag/v1.0.1.0"
+                codeLink="https://github.com/SouravKumarBarman/LibCheck"
+              />
+              <ProjectCard
                 title="Chat with PDF"
                 description="A web application that allows users to upload PDF documents and ask questions about the content using natural language processing."
                 image="https://raw.githubusercontent.com/SouravKumarBarman/pdf-reader-chatbot/refs/heads/main/desktop.png"
                 tags={["React", "Tailwind", "FastAPI", "LangChain", "NLP"]}
-                
+
                 codeLink="https://github.com/SouravKumarBarman/pdf-reader-chatbot"
               />
               <ProjectCard
@@ -488,45 +494,6 @@ export default function Portfolio() {
                   </Link>
                 </div>
               </div>
-              <div className="flex flex-col gap-4">
-                <h3 className="text-2xl font-bold">Send Me a Message</h3>
-                <form className="flex flex-col gap-4">
-                  <div className="grid gap-2">
-                    <label htmlFor="name" className="text-sm font-medium leading-none">
-                      Name
-                    </label>
-                    <input
-                      id="name"
-                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-gray-800 dark:border-gray-700 dark:text-white"
-                      placeholder="Your name"
-                    />
-                  </div>
-                  <div className="grid gap-2">
-                    <label htmlFor="email" className="text-sm font-medium leading-none">
-                      Email
-                    </label>
-                    <input
-                      id="email"
-                      type="email"
-                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-gray-800 dark:border-gray-700 dark:text-white"
-                      placeholder="Your email"
-                    />
-                  </div>
-                  <div className="grid gap-2">
-                    <label htmlFor="message" className="text-sm font-medium leading-none">
-                      Message
-                    </label>
-                    <textarea
-                      id="message"
-                      className="flex min-h-[120px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-gray-800 dark:border-gray-700 dark:text-white"
-                      placeholder="Your message"
-                    />
-                  </div>
-                  <Button type="submit" className="w-full">
-                    Send Message
-                  </Button>
-                </form>
-              </div>
             </div>
           </div>
         </section>
@@ -615,7 +582,7 @@ function ProjectCard({
           alt={title}
           width={500}
           height={300}
-          className="w-full h-[200px] object-cover"
+          className="w-full h-[200px] object-contain"
         />
         <CardContent className="p-6">
           <h3 className="text-xl font-bold mb-2">{title}</h3>
@@ -628,14 +595,14 @@ function ProjectCard({
             ))}
           </div>
           <div className="flex gap-4">
-            {demoLink?
-            <Link href={demoLink} target="_blank" rel="noopener noreferrer">
-            <Button variant="outline" size="sm">
-              <ExternalLink className="mr-2 h-4 w-4" />
-              Live Demo
-            </Button>
-          </Link>:null}
-            
+            {demoLink ?
+              <Link href={demoLink} target="_blank" rel="noopener noreferrer">
+                <Button variant="outline" size="sm">
+                  <ExternalLink className="mr-2 h-4 w-4" />
+                  Live Demo
+                </Button>
+              </Link> : null}
+
             <Link href={codeLink} target="_blank" rel="noopener noreferrer">
               <Button variant="outline" size="sm">
                 <Github className="mr-2 h-4 w-4" />
