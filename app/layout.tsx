@@ -1,6 +1,24 @@
 import type React from "react"
 import { Providers } from "./providers"
 import { Analytics } from "@vercel/analytics/react"
+import './globals.css'
+
+export const metadata = {
+  title: "Sourav - Full Stack Developer",
+  description: "Portfolio of Sourav Kumar Barman - Full Stack Web Developer specializing in React, Node.js, and modern web technologies",
+  keywords: ["Full Stack Developer", "React", "Node.js", "JavaScript", "TypeScript", "Web Development"],
+  authors: [{ name: "Sourav Kumar Barman" }],
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/image.png',
+    apple: '/image.png',
+  },
+  openGraph: {
+    title: "Sourav Kumar Barman - Full Stack Developer",
+    description: "Portfolio of Sourav Kumar Barman - Full Stack Web Developer",
+    type: "website",
+  },
+}
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -12,11 +30,3 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   )
 }
-
-
-
-import './globals.css'
-
-export const metadata = {
-      generator: 'v0.dev'
-    };

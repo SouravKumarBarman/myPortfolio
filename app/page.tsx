@@ -404,7 +404,7 @@ export default function Portfolio() {
               </div>
             </div>
             <div className="mx-auto max-w-5xl space-y-8 py-12">
-              <Card className="dark:bg-gray-800 dark:border-gray-700">
+              <Card className="dark:bg-gray-900 dark:border-gray-700">
                 <CardContent className="p-6">
                   <div className="space-y-4">
                     <div className="flex flex-col justify-between gap-1 sm:flex-row sm:items-center">
@@ -435,7 +435,7 @@ export default function Portfolio() {
                 </CardContent>
               </Card>
 
-              <Card className="dark:bg-gray-800 dark:border-gray-700">
+              <Card className="dark:bg-gray-900 dark:border-gray-700">
                 <CardContent className="p-6">
                   <div className="space-y-4">
                     <div className="flex flex-col justify-between gap-1 sm:flex-row sm:items-center">
@@ -540,15 +540,15 @@ function SkillCard({ name, level, logo }: { name: string; level: string; logo: s
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <Card className="overflow-hidden dark:bg-gray-800 dark:border-gray-700">
+      <Card className="overflow-hidden dark:bg-gray-900 dark:border-gray-700">
         <CardContent className="p-4 flex flex-col items-center gap-2">
           <div className="w-12 h-12 mb-2">
             <img src={logo || "/placeholder.svg"} alt={`${name} logo`} className="w-full h-full object-contain" />
           </div>
           <h3 className="font-semibold">{name}</h3>
-          <Badge variant={level === "Advanced" ? "default" : level === "Intermediate" ? "secondary" : "outline"}>
+          {/* <Badge variant={level === "Advanced" ? "default" : level === "Intermediate" ? "secondary" : "outline"}>
             {level}
-          </Badge>
+          </Badge> */}
         </CardContent>
       </Card>
     </motion.div>
