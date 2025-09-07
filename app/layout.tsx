@@ -18,6 +18,7 @@ export const metadata = {
     description: "Portfolio of Sourav Kumar Barman - Full Stack Web Developer",
     type: "website",
   },
+  "google-site-verification": "C257maFEzCBUJhL4vMxfCyJ6Eav12d6YlKnOi2hML_g",
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
