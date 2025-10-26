@@ -247,7 +247,7 @@ export default function Portfolio() {
                 </div>
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
                   <Link
-                    href="https://res.cloudinary.com/dyxfmln9h/image/upload/v1740851596/SouravResume_3_j2vguw.pdf"
+                    href="https://res.cloudinary.com/dyxfmln9h/image/upload/v1761479198/SouravResume6_th3frb.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
                     passHref // Important for passing href to child component
