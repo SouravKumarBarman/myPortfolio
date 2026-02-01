@@ -37,7 +37,69 @@ export default function BlogCard({ blog, showActions = false, onDelete }: BlogCa
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
     >
-      <Card className="h-full overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 dark:bg-gray-800 dark:border-gray-700">
+      {/* Mobile List View */}
+      <Card className="sm:hidden overflow-hidden hover:shadow-md transition-all duration-300 dark:bg-gray-800 dark:border-gray-700">
+        <Link href={`/blog/${blog.slug}`} className="flex gap-3 p-3">
+          {blog.coverImage && (
+            <div className="relative w-20 h-20 flex-shrink-0 rounded-md overflow-hidden">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={blog.coverImage}
+                alt={blog.title}
+                className="object-cover w-full h-full"
+              />
+            </div>
+          )}
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2 text-xs text-muted-foreground dark:text-gray-400 mb-1">
+              <span>{formatDate(blog.publishedAt || blog.createdAt)}</span>
+              <span>•</span>
+              <span>{blog.readingTime} min</span>
+              {blog.status === "draft" && (
+                <Badge variant="secondary" className="text-xs py-0 px-1">
+                  Draft
+                </Badge>
+              )}
+            </div>
+            <h3 className="text-sm font-semibold line-clamp-2">{blog.title}</h3>
+          </div>
+        </Link>
+        {showActions && (
+          <div className="flex items-center gap-2 px-3 pb-3 border-t pt-2">
+            <Link href={`/blog/edit/${blog.id}`}>
+              <Button variant="outline" size="sm" className="h-7 text-xs">
+                <Edit className="h-3 w-3 mr-1" />
+                Edit
+              </Button>
+            </Link>
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button variant="outline" size="sm" className="h-7 text-xs text-destructive hover:text-destructive">
+                  <Trash2 className="h-3 w-3 mr-1" />
+                  Delete
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Delete Blog Post</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    Are you sure you want to delete &quot;{blog.title}&quot;? This action cannot be undone.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Cancel</AlertDialogCancel>
+                  <AlertDialogAction onClick={handleDelete} className="bg-destructive text-destructive-foreground hover:bg-destructive/90">
+                    Delete
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+          </div>
+        )}
+      </Card>
+
+      {/* Desktop Card View */}
+      <Card className="hidden sm:block h-full overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 dark:bg-gray-800 dark:border-gray-700">
         <Link href={`/blog/${blog.slug}`}>
           {blog.coverImage && (
             <div className="relative aspect-video overflow-hidden">

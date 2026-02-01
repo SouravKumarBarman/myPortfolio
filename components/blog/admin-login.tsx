@@ -44,9 +44,9 @@ export function AdminLogin({ trigger, onSuccess }: AdminLoginProps) {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         {trigger || (
-          <Button variant="outline" size="sm">
-            <Lock className="h-4 w-4 mr-2" />
-            Admin Login
+          <Button variant="outline" size="sm" className="sm:px-3 px-2">
+            <Lock className="h-4 w-4 sm:mr-2" />
+            <span className="hidden sm:inline">Admin Login</span>
           </Button>
         )}
       </DialogTrigger>
@@ -95,9 +95,9 @@ export function AdminLogout() {
   if (!isAdmin) return null;
 
   return (
-    <Button variant="ghost" size="sm" onClick={logout}>
-      <LogOut className="h-4 w-4 mr-2" />
-      Logout
+    <Button variant="ghost" size="sm" onClick={logout} className="sm:px-3 px-2">
+      <LogOut className="h-4 w-4 sm:mr-2" />
+      <span className="hidden sm:inline">Logout</span>
     </Button>
   );
 }
