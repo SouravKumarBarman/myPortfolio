@@ -29,7 +29,7 @@ export default function NewBlogPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center dark:bg-gray-900">
         <Loader2 className="h-8 w-8 animate-spin" />
       </div>
     );
@@ -37,10 +37,10 @@ export default function NewBlogPage() {
 
   if (!isAdmin) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center gap-4 p-4">
-        <ShieldAlert className="h-16 w-16 text-muted-foreground" />
+      <div className="min-h-screen flex flex-col items-center justify-center gap-4 p-4 dark:bg-gray-900 dark:text-white">
+        <ShieldAlert className="h-16 w-16 text-muted-foreground dark:text-gray-400" />
         <h1 className="text-2xl font-bold">Access Denied</h1>
-        <p className="text-muted-foreground text-center">
+        <p className="text-muted-foreground text-center dark:text-gray-400">
           You need to be logged in as admin to create blog posts.
         </p>
         <Link href="/blog">

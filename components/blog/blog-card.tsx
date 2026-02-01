@@ -37,7 +37,7 @@ export default function BlogCard({ blog, showActions = false, onDelete }: BlogCa
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
     >
-      <Card className="h-full flex flex-col overflow-hidden hover:shadow-lg transition-shadow duration-300">
+      <Card className="h-full flex flex-col overflow-hidden hover:shadow-lg transition-shadow duration-300 dark:bg-gray-800 dark:border-gray-700">
         {blog.coverImage && (
           <div className="relative aspect-video overflow-hidden">
             {/* eslint-disable-next-line @next/next/no-img-element */}

@@ -99,9 +99,9 @@ export default function BlogPostPage() {
 
   if (!blog) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center gap-4">
+      <div className="min-h-screen flex flex-col items-center justify-center gap-4 dark:bg-gray-900 dark:text-white">
         <h1 className="text-2xl font-bold">Blog not found</h1>
-        <p className="text-muted-foreground">
+        <p className="text-muted-foreground dark:text-gray-400">
           The blog post you&apos;re looking for doesn&apos;t exist.
         </p>
         <Link href="/blog">
@@ -115,9 +115,9 @@ export default function BlogPostPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background dark:bg-gray-900 dark:text-white transition-colors duration-200">
       {/* Header */}
-      <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 dark:bg-gray-800 dark:border-gray-700">
         <div className="container mx-auto px-4 py-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
