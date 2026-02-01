@@ -96,3 +96,121 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+/* Blog Editor Styles */
+.w-md-editor {
+  --md-editor-background-color: transparent !important;
+}
+
+.w-md-editor-toolbar {
+  background-color: hsl(var(--muted)) !important;
+  border-bottom: 1px solid hsl(var(--border)) !important;
+}
+
+.w-md-editor-content {
+  background-color: hsl(var(--background)) !important;
+}
+
+.w-md-editor-text-pre > code,
+.w-md-editor-text-input {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace !important;
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+}
+
+.wmde-markdown {
+  background-color: transparent !important;
+  font-family: inherit !important;
+}
+
+.wmde-markdown pre {
+  background-color: hsl(var(--muted)) !important;
+  border-radius: 0.5rem !important;
+  padding: 1rem !important;
+  overflow-x: auto !important;
+}
+
+.wmde-markdown code {
+  background-color: hsl(var(--muted)) !important;
+  padding: 0.2rem 0.4rem !important;
+  border-radius: 0.25rem !important;
+  font-size: 0.875em !important;
+}
+
+.wmde-markdown pre code {
+  padding: 0 !important;
+  background-color: transparent !important;
+}
+
+.wmde-markdown img {
+  max-width: 100% !important;
+  height: auto !important;
+  border-radius: 0.5rem !important;
+}
+
+.wmde-markdown iframe {
+  max-width: 100% !important;
+  border-radius: 0.5rem !important;
+  margin: 1rem 0 !important;
+}
+
+.wmde-markdown video {
+  max-width: 100% !important;
+  border-radius: 0.5rem !important;
+}
+
+.wmde-markdown blockquote {
+  border-left: 4px solid hsl(var(--primary)) !important;
+  padding-left: 1rem !important;
+  margin-left: 0 !important;
+  color: hsl(var(--muted-foreground)) !important;
+}
+
+.wmde-markdown h1,
+.wmde-markdown h2,
+.wmde-markdown h3,
+.wmde-markdown h4,
+.wmde-markdown h5,
+.wmde-markdown h6 {
+  margin-top: 1.5rem !important;
+  margin-bottom: 0.75rem !important;
+  font-weight: 600 !important;
+}
+
+.wmde-markdown table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+}
+
+.wmde-markdown th,
+.wmde-markdown td {
+  border: 1px solid hsl(var(--border)) !important;
+  padding: 0.5rem !important;
+}
+
+.wmde-markdown th {
+  background-color: hsl(var(--muted)) !important;
+}
+
+/* Dark mode adjustments for editor */
+[data-color-mode="dark"] .w-md-editor,
+.dark .w-md-editor {
+  --color-canvas-default: hsl(var(--background)) !important;
+  --color-fg-default: hsl(var(--foreground)) !important;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 640px) {
+  .w-md-editor {
+    font-size: 14px !important;
+  }
+  
+  .w-md-editor-toolbar {
+    flex-wrap: wrap !important;
+    gap: 0.25rem !important;
+  }
+  
+  .w-md-editor-toolbar li > button {
+    padding: 4px !important;
+  }
+}

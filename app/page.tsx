@@ -124,6 +124,9 @@ export default function Portfolio() {
             <Link href="#experience" className="text-sm font-medium hover:text-primary transition-colors">
               Experience
             </Link>
+            <Link href="/blog" className="text-sm font-medium hover:text-primary transition-colors">
+              Blog
+            </Link>
             <Link href="#contact" className="text-sm font-medium hover:text-primary transition-colors">
               Contact
             </Link>
@@ -197,6 +200,13 @@ export default function Portfolio() {
                 onClick={toggleMenu}
               >
                 Experience
+              </Link>
+              <Link
+                href="/blog"
+                className="text-sm font-medium hover:text-primary transition-colors"
+                onClick={toggleMenu}
+              >
+                Blog
               </Link>
             </nav>
           </motion.div>
