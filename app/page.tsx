@@ -1,6 +1,6 @@
 "use client"
 
-import { Mail, Github, Linkedin, ExternalLink, X, Moon, Sun, Twitter } from "lucide-react"
+import { Mail, Github, Linkedin, ExternalLink, X, Moon, Sun, Twitter, ArrowRight, Calendar, Clock, BookOpen } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -10,6 +10,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { useState, useEffect } from "react"
 import { useTheme } from "next-themes"
 import { Caveat } from "next/font/google"
+import { BlogPost, getPublishedBlogs, formatDate } from "@/lib/blog"
 
 const font = Caveat({
   subsets: ["latin"],
@@ -21,9 +22,15 @@ export default function Portfolio() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
+  const [recentBlogs, setRecentBlogs] = useState<BlogPost[]>([])
 
   useEffect(() => {
     setMounted(true)
+    // Load recent published blogs (max 3)
+    const blogs = getPublishedBlogs()
+      .sort((a, b) => new Date(b.publishedAt || b.createdAt).getTime() - new Date(a.publishedAt || a.createdAt).getTime())
+      .slice(0, 3)
+    setRecentBlogs(blogs)
   }, [])
 
   const toggleMenu = () => {
@@ -124,7 +131,7 @@ export default function Portfolio() {
             <Link href="#experience" className="text-sm font-medium hover:text-primary transition-colors">
               Experience
             </Link>
-            <Link href="/blog" className="text-sm font-medium hover:text-primary transition-colors">
+            <Link href="#blog" className="text-sm font-medium hover:text-primary transition-colors">
               Blog
             </Link>
             <Link href="#contact" className="text-sm font-medium hover:text-primary transition-colors">
@@ -202,7 +209,7 @@ export default function Portfolio() {
                 Experience
               </Link>
               <Link
-                href="/blog"
+                href="#blog"
                 className="text-sm font-medium hover:text-primary transition-colors"
                 onClick={toggleMenu}
               >
@@ -471,6 +478,93 @@ export default function Portfolio() {
                   </div>
                 </CardContent>
               </Card>
+            </div>
+          </div>
+        </section>
+
+        {/* Blog Section */}
+        <section id="blog" className="w-full py-12 md:py-24 lg:py-32 dark:bg-gray-800">
+          <div className="container px-4 md:px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="flex flex-col items-center justify-center space-y-4 text-center"
+            >
+              <div className="space-y-2">
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Recent Blogs</h2>
+                <p className="max-w-[900px] text-muted-foreground dark:text-gray-400 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                  Thoughts, tutorials, and insights from my development journey
+                </p>
+              </div>
+            </motion.div>
+
+            {recentBlogs.length > 0 ? (
+              <div className="mx-auto grid max-w-5xl gap-6 py-12 md:grid-cols-2 lg:grid-cols-3">
+                {recentBlogs.map((blog, index) => (
+                  <motion.div
+                    key={blog.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                  >
+                    <Link href={`/blog/${blog.slug}`}>
+                      <Card className="h-full overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 dark:bg-gray-900 dark:border-gray-700">
+                        {blog.coverImage && (
+                          <div className="relative aspect-video overflow-hidden">
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                              src={blog.coverImage}
+                              alt={blog.title}
+                              className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
+                            />
+                          </div>
+                        )}
+                        <CardContent className="p-4">
+                          <div className="flex items-center gap-2 text-xs text-muted-foreground dark:text-gray-400 mb-2">
+                            <Calendar className="h-3 w-3" />
+                            <span>{formatDate(blog.publishedAt || blog.createdAt)}</span>
+                            <span className="mx-1">•</span>
+                            <Clock className="h-3 w-3" />
+                            <span>{blog.readingTime} min read</span>
+                          </div>
+                          <h3 className="text-lg font-semibold line-clamp-2 mb-2">{blog.title}</h3>
+                          <p className="text-sm text-muted-foreground dark:text-gray-400 line-clamp-2">
+                            {blog.excerpt || blog.content.slice(0, 100)}...
+                          </p>
+                          {blog.tags.length > 0 && (
+                            <div className="flex flex-wrap gap-1 mt-3">
+                              {blog.tags.slice(0, 2).map((tag) => (
+                                <Badge key={tag} variant="outline" className="text-xs">
+                                  {tag}
+                                </Badge>
+                              ))}
+                            </div>
+                          )}
+                        </CardContent>
+                      </Card>
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+            ) : (
+              <div className="flex flex-col items-center justify-center py-12 text-center">
+                <BookOpen className="h-16 w-16 mb-4 text-muted-foreground/50" />
+                <p className="text-muted-foreground dark:text-gray-400">
+                  No blog posts yet. Check back soon!
+                </p>
+              </div>
+            )}
+
+            <div className="flex justify-center">
+              <Link href="/blog">
+                <Button size="lg" className="gap-2">
+                  View All Blogs
+                  <ArrowRight className="h-4 w-4" />
+                </Button>
+              </Link>
             </div>
           </div>
         </section>
